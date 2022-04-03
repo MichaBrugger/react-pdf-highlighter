@@ -33,6 +33,7 @@ export interface ScaledPosition {
   rects: Array<Scaled>;
   pageNumber: number;
   usePdfCoordinates?: boolean;
+  lastNode: Page | null;
 }
 
 export interface Content {

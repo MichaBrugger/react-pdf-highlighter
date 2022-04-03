@@ -241,6 +241,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
             boundingRect: highlight!.position.boundingRect,
             rects: [],
             usePdfCoordinates: highlight!.position.usePdfCoordinates,
+            lastNode: null,
           } as ScaledPosition,
         };
         let anyRectsOnPage = false;
