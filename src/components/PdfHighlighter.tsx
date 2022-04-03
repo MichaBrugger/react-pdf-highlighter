@@ -38,6 +38,7 @@ import type {
   Scaled,
   LTWH,
   LTWHP,
+  Page,
 } from "../types";
 import type { PDFDocumentProxy } from "pdfjs-dist";
 
@@ -48,6 +49,7 @@ interface State<T_HT> {
     position: ScaledPosition;
     content?: { text?: string; image?: string };
   } | null;
+  lastNode: Page | null;
   isCollapsed: boolean;
   range: Range | null;
   tip: {
@@ -99,6 +101,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
 
   state: State<T_HT> = {
     ghostHighlight: null,
+    lastNode: null,
     isCollapsed: true,
     range: null,
     scrolledToHighlightId: EMPTY_ID,
@@ -214,7 +217,6 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     [pageNumber: string]: Array<T_HT>;
   } {
     const { ghostHighlight } = this.state;
-
     const allHighlights = [...highlights, ghostHighlight].filter(Boolean);
 
     const pageNumbers = new Set<number>();
@@ -268,7 +270,6 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     if (highlightInProgress || isAreaSelectionInProgress) {
       return;
     }
-
     this.setTip(highlight.position, content);
   }
 
@@ -296,10 +297,13 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
   }: Position): ScaledPosition {
     const viewport = this.viewer.getPageView(pageNumber - 1).viewport;
 
+    const lastNode = this.state.lastNode || null;
+
     return {
       boundingRect: viewportToScaled(boundingRect, viewport),
       rects: (rects || []).map((rect) => viewportToScaled(rect, viewport)),
       pageNumber,
+      lastNode,
     };
   }
 
@@ -531,12 +535,20 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
       return;
     }
 
+    const lastNodeContent = getPageFromElement(event.target as HTMLElement);
+    this.setState({
+      lastNode: lastNodeContent,
+    });
+    console.log("lastNodeContent", lastNodeContent?.node);
+
     this.hideTipAndSelection();
   };
 
   handleKeyDown = (event: KeyboardEvent) => {
     if (event.code === "Escape") {
       this.hideTipAndSelection();
+    }
+    if (event.code === "CtrlLeft" || event.code === "ControlLeft") {
     }
   };
 
@@ -572,6 +584,8 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     const content = {
       text: range.toString(),
     };
+
+    console.log("onSelectionFinished", range);
     const scaledPosition = this.viewportPositionToScaled(viewportPosition);
 
     this.setTip(
