@@ -383,6 +383,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     this.setState({ ghostHighlight: null, tip: null }, () =>
       this.renderHighlights()
     );
+    console.log("test");
   };
 
   setTip(position: Position, inner: JSX.Element | null) {

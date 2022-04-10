@@ -78,6 +78,7 @@ export class PdfHighlighter extends PureComponent {
                 tipChildren: null,
             });
             this.setState({ ghostHighlight: null, tip: null }, () => this.renderHighlights());
+            console.log("test");
         };
         this.renderTip = () => {
             const { tipPosition, tipChildren } = this.state;

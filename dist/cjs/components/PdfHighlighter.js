@@ -103,6 +103,7 @@ class PdfHighlighter extends react_1.PureComponent {
                 tipChildren: null,
             });
             this.setState({ ghostHighlight: null, tip: null }, () => this.renderHighlights());
+            console.log("test");
         };
         this.renderTip = () => {
             const { tipPosition, tipChildren } = this.state;
