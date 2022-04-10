@@ -241,6 +241,7 @@ export class PdfHighlighter extends PureComponent {
         if (prevProps.highlights !== this.props.highlights) {
             this.renderHighlights(this.props);
         }
+        console.log("componentDidUpdatesadasdasd");
     }
     init() {
         const { pdfDocument } = this.props;

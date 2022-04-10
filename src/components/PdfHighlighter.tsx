@@ -170,6 +170,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     if (prevProps.highlights !== this.props.highlights) {
       this.renderHighlights(this.props);
     }
+    console.log("componentDidUpdatesadasdasd");
   }
 
   init() {

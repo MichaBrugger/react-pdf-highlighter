@@ -266,6 +266,7 @@ class PdfHighlighter extends react_1.PureComponent {
         if (prevProps.highlights !== this.props.highlights) {
             this.renderHighlights(this.props);
         }
+        console.log("componentDidUpdatesadasdasd");
     }
     init() {
         const { pdfDocument } = this.props;
