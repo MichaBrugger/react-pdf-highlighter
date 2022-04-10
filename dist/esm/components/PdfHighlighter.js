@@ -232,6 +232,7 @@ export class PdfHighlighter extends PureComponent {
     }
     componentDidMount() {
         this.init();
+        console.warn("PdfHighlighter.componentDidMount");
     }
     componentDidUpdate(prevProps) {
         if (prevProps.pdfDocument !== this.props.pdfDocument) {
@@ -241,7 +242,6 @@ export class PdfHighlighter extends PureComponent {
         if (prevProps.highlights !== this.props.highlights) {
             this.renderHighlights(this.props);
         }
-        console.log("componentDidUpdatesadasdasd");
     }
     init() {
         const { pdfDocument } = this.props;

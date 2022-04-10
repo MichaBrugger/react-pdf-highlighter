@@ -132,6 +132,7 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
 
   componentDidMount() {
     this.init();
+    console.warn("PdfHighlighter.componentDidMount");
   }
 
   attachRef = (ref: HTMLDivElement | null) => {
@@ -170,7 +171,6 @@ export class PdfHighlighter<T_HT extends IHighlight> extends PureComponent<
     if (prevProps.highlights !== this.props.highlights) {
       this.renderHighlights(this.props);
     }
-    console.log("componentDidUpdatesadasdasd");
   }
 
   init() {
