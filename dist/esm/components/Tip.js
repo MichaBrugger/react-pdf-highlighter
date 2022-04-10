@@ -27,7 +27,7 @@ export class Tip extends Component {
                 onConfirm({ text, emoji });
             } },
             React.createElement("div", null,
-                React.createElement("textarea", { placeholder: "Your comment", autoFocus: true, value: text, onChange: (event) => this.setState({ text: event.target.value }), ref: (node) => {
+                React.createElement("textarea", { placeholder: "comment", autoFocus: true, value: text, onChange: (event) => this.setState({ text: event.target.value }), ref: (node) => {
                         if (node) {
                             node.focus();
                         }

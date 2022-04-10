@@ -56,7 +56,7 @@ export class Tip extends Component<Props, State> {
           >
             <div>
               <textarea
-                placeholder="Your comment"
+                placeholder="comment"
                 autoFocus
                 value={text}
                 onChange={(event) =>

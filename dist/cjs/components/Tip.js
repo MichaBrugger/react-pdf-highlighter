@@ -49,7 +49,7 @@ class Tip extends react_1.Component {
                 onConfirm({ text, emoji });
             } },
             react_1.default.createElement("div", null,
-                react_1.default.createElement("textarea", { placeholder: "Your comment", autoFocus: true, value: text, onChange: (event) => this.setState({ text: event.target.value }), ref: (node) => {
+                react_1.default.createElement("textarea", { placeholder: "comment", autoFocus: true, value: text, onChange: (event) => this.setState({ text: event.target.value }), ref: (node) => {
                         if (node) {
                             node.focus();
                         }
